@@ -1,5 +1,36 @@
 {% extends "users/base.html" %}
+{% load static %}
 {% block body %}
- <h1>Homepage for the users app</h1>
+   <div class="flex justify-center mt-5 p-10">
+      <h2 class="text-3xl font-normal mb-2 text-grey-500">My Posts</h2>
+   </div>
+   <div class="grid mx-60 p-10 grid-cols-1">
+      <!-- Card Starts here-->
+      {% for post in posts %}
+         <a href="">
+            <div class="rounded overflow-hidden w-[470px] h-[470px] bg-white shadow-lg">
+               <div class="user-container flex mx-5 my-5">
+                  <img class="w-10 h-10 rounded-full" src="{{profile.photo.url}}" alt="{{post.user}}">
+                  <div class="mx-2 my-2 font-bold">
+                     <span class="text-indigo-500">{{post.user}}</span>
+                  </div>
+               </div>
+               <img src="{{post.image.url}}" alt="{{post.title}}">
+            </div>
+            <div class="px-6 py-4"> 
+               <div class="icon-container flex gap-3">
+                  <img class ="w-5 h-5" src="{% static 'users/images/like.png' %}" alt="">
+                  <img class ="w-5 h-5" src="{% static 'users/images/comment.png' %}" alt="">
+                  <img class ="w-5 h-5" src="{% static 'users/images/share.png' %}" alt="">
+               </div>
+            </div>
+            <div class="px-6 py-4">
+               <div class= "font-bold text-xl mb-2">{{post.title}}</div>
+               <p class="text-gray-700 text-base">{{post.caption}}</p>
+            </div>
+         </a>
+      {% endfor %}
+      <!-- Card ends here-->
+   </div>
+ 
 {% endblock body %}
-
